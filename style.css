@@ -1,9 +1,18 @@
 body{
-
+    position:relative;
     background-image: url('images/background.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
 }
-mainText{
+#mainText{
     border: 1cm;
+    text-align: center;
+}
+#card{
+    visibility:hidden;
+    size: 10%;
+}
+#deckGenerator{
+    font-size: medium;
+    font-weight: 200;
 }

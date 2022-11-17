@@ -166,39 +166,48 @@ for (let i = 0; i < allCards.length; i++){
 }
 
 //STUFF TO ACTUALLY RUN
+var deck = [];
+var cardNames = [];
 var button = document.getElementById("deckGenerator");
-button.addEventListener("click", CreateDeck);
+button.addEventListener("click", CreateDeck());
+for (let i = 0; i < deck.length; i++){
+    cardNames[i] = "images/" + deck[i].name + ".png";
+}
+
+
 
 
 function CreateDeck(){
-    let deck = [];
+    //first clear any previous deck
+    while(deck.length > 0){
+        deck.pop();
+    }
     //add random cycle card
-    randCycle = Math.floor(Math.random * cycles.length);
-    deck.push(cycles[randCycle-1]);
+    randCycle = Math.floor(Math.random * cycles.length)-1;
+    deck.push(cycles[randCycle]);
     //add random spell
-    randSpell = Math.floor(Math.random * spells.length);
-    deck.push(spells[randSpell-1]);
+    randSpell = Math.floor(Math.random * spells.length)-1;
+    deck.push(spells[randSpell]);
     //add random building
-    randBuilding = Math.floor(Math.random * buildings.length);
-    deck.push(buildings[randBuilding-1]);
+    randBuilding = Math.floor(Math.random * buildings.length)-1;
+    deck.push(buildings[randBuilding]);
     //add random support
-    randSupport = Math.floor(Math.random * supports.length);
-    deck.push(supports[randSupport-1]);
+    randSupport = Math.floor(Math.random * supports.length)-1;
+    deck.push(supports[randSupport]);
     //add random wincon
-    randWincon = Math.floor(Math.random * wincons.length);
-    deck.push(wincons[randWincon-1]);
+    randWincon = Math.floor(Math.random * wincons.length)-1;
+    deck.push(wincons[randWincon]);
     //add random spell
-    randMinitank = Math.floor(Math.random * miniTanks.length);
-    deck.push(miniTanks[randMinitank-1]);
+    randMinitank = Math.floor(Math.random * miniTanks.length)-1;
+    deck.push(miniTanks[randMinitank]);
     //add either random or champion
-    randEither = Math.floor(Math.random * (randoms.length + champions.length));
+    randEither = Math.floor(Math.random * (randoms.length + champions.length))-1;
     if (parseInt(randEither) > randoms.length){
         randEither -= randoms.length
-        deck.push(champions[randEither-1]);
+        deck.push(champions[randEither]);
     }
     else{
-        deck.push(randoms[randEither-1]);
+        deck.push(randoms[randEither]);
     }
     return deck;
-
 }
