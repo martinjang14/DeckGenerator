@@ -128,14 +128,14 @@ allCards.push(arhcerQueen = new Card("archerQueen", 5, "champion", "champion"));
 allCards.push(mightyMiner = new Card("mightyMiner", 4, "champion", "champion"));
 allCards.push(monk = new Card("monk", 4, "champion", "champion"));
 
-let cycles = [];
-let spells = [];
-let buildings = [];
-let supports = [];
-let wincons = [];
-let miniTanks = [];
-let randoms = [];
-let champions = [];
+var cycles = [];
+var spells = [];
+var buildings = [];
+var supports = [];
+var wincons = [];
+var miniTanks = [];
+var randoms = [];
+var champions = [];
 
 //put each card into category to pick later
 for (let i = 0; i < allCards.length; i++){
@@ -167,12 +167,8 @@ for (let i = 0; i < allCards.length; i++){
 
 //STUFF TO ACTUALLY RUN
 var deck = [];
-var cardNames = [];
 var button = document.getElementById("deckGenerator");
 button.addEventListener("click", CreateDeck());
-for (let i = 0; i < deck.length; i++){
-    cardNames[i] = "images/" + deck[i].name + ".png";
-}
 
 
 
@@ -182,6 +178,7 @@ function CreateDeck(){
     while(deck.length > 0){
         deck.pop();
     }
+
     //add random cycle card
     randCycle = Math.floor(Math.random * cycles.length)-1;
     deck.push(cycles[randCycle]);
@@ -209,5 +206,13 @@ function CreateDeck(){
     else{
         deck.push(randoms[randEither]);
     }
+    var cardNames = [];
+    for (let i = 0; i < deck.length; i++){
+        cardNames[i] = "images/" + deck[i].name + ".png";
+        var cardNumber = "card" + toString(i+1); //card1
+        document.getElementById(cardNumber).style.visibility = "visible";
+        document.getElementById(cardNumber).src = deck[i];
+    }
+
     return deck;
 }
