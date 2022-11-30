@@ -13,42 +13,9 @@ body{
     font-size: medium;
     font-weight: 200;
 }
-#card1{
-    visibility:hidden;
-    height: 10%;
-    width: 10%;
-}
-#card2{
-    visibility:hidden;
-    height: 10%;
-    width: 10%;
-}
-#card3{
-    visibility:hidden;
-    height: 10%;
-    width: 10%;
-}
-#card4{
-    visibility:hidden;
-    height: 10%;
-    width: 10%;
-}
-#card5{
-    visibility:hidden;
-    size: 10%;
-}
-#card6{
-    visibility:hidden;
-    height: 10%;
-    width: 10%;
-}
-#card7{
-    visibility:hidden;
-    height: 10%;
-    width: 10%;
-}
-#card8{
-    visibility:hidden;
+
+.card{
+    visibility:visible;
     height: 10%;
     width: 10%;
 }

@@ -88,7 +88,7 @@ allCards.push(royalHogs = new Card("royalHogs", 5, "wincon", "rare"));
 allCards.push(graveyard = new Card("graveyard", 5, "wincon", "legendary"));
 allCards.push(goblinDrill = new Card("goblinDrill", 4, "wincon", "epic"));
 allCards.push(hogRider = new Card("hogRider", 4, "wincon", "rare"));
-allCards.push(battleRam = new Card("batleRam", 4, "wincon", "rare"));
+allCards.push(battleRam = new Card("battleRam", 4, "wincon", "rare"));
 allCards.push(elixirGolem = new Card("elixirGolem", 3, "wincon", "rare"));
 
 allCards.push(eliteBarbarians = new Card("eliteBarbarians", 6, "miniTank", "common"));
@@ -139,79 +139,110 @@ var champions = [];
 
 //put each card into category to pick later
 for (let i = 0; i < allCards.length; i++){
-    if (allCards[i].type == "cycle"){
-        cycles.push(allCards[i]);
-    }
-    else if (allCards[i].type == "spell"){
-        spells.push(allCards[i]);
-    }
-    else if (allCards[i].type == "building"){
-        buildings.push(allCards[i]);
-    }
-    else if (allCards[i].type == "support"){
-        supports.push(allCards[i]);
-    }
-    else if (allCards[i].type == "wincon"){
-        wincons.push(allCards[i]);
-    }
-    else if (allCards[i].type == "miniTank"){
-        miniTanks.push(allCards[i]);
-    }
-    else if (allCards[i].type == "random"){
-        randoms.push(allCards[i]);
-    }
-    else if (allCards[i].type == "champion"){
-        champions.push(allCards[i]);
+    let currentCard = allCards[i];
+    if (currentCard instanceof Card){
+        if (currentCard.type == "cycle"){
+            cycles.push(currentCard);
+        }
+        else if (currentCard.type == "spell"){
+            spells.push(currentCard);
+        }
+        else if (currentCard.type == "building"){
+            buildings.push(currentCard);
+        }
+        else if (currentCard.type == "support"){
+            supports.push(currentCard);
+        }
+        else if (currentCard.type == "wincon"){
+            wincons.push(currentCard);
+        }
+        else if (currentCard.type == "miniTank"){
+            miniTanks.push(currentCard);
+        }
+        else if (currentCard.type == "random"){
+            randoms.push(currentCard);
+        }
+        else if (currentCard.type == "champion"){
+            champions.push(currentCard);
+        }
     }
 }
 
 //STUFF TO ACTUALLY RUN
 var deck = [];
-var button = document.getElementById("deckGenerator");
-button.addEventListener("click", CreateDeck());
-
+var randCycle;
+var randBuilding;
+var randMinitank;
+var randomR;
+var randChamp;
+var randSpell;
+var randSupport;
+var randWincon;
+// let createDeckButton = document.getElementById('deckGenerator');
+// createDeckButton.addEventListener('click', CreateDeck());
+document.querySelector("button").onclick = function() {
+    CreateDeck();
+}
 
 
 
 function CreateDeck(){
+    console.log("does this work");
     //first clear any previous deck
     while(deck.length > 0){
         deck.pop();
     }
-
     //add random cycle card
-    randCycle = Math.floor(Math.random * cycles.length)-1;
-    deck.push(cycles[randCycle]);
+    randCycle = Math.floor(Math.random() * (cycles.length-1));
+    //if (cycles[randCycle] instanceof Card){
+        deck.push(cycles[randCycle]);
+    //}
     //add random spell
-    randSpell = Math.floor(Math.random * spells.length)-1;
-    deck.push(spells[randSpell]);
+    randSpell = spells[Math.floor(Math.random() * spells.length)];
+    //if (randSpell instanceof Card){
+        deck.push(randSpell);
+    //}
     //add random building
-    randBuilding = Math.floor(Math.random * buildings.length)-1;
-    deck.push(buildings[randBuilding]);
+    randBuilding = buildings[(Math.floor(Math.random() * buildings.length))];
+    //if (randBuilding instanceof Card){
+        deck.push(randBuilding);
+    //}
     //add random support
-    randSupport = Math.floor(Math.random * supports.length)-1;
-    deck.push(supports[randSupport]);
+    randSupport = supports[Math.floor(Math.random() * supports.length)];
+    //if (randSupport instanceof Card){
+        deck.push(randSupport);
+    //}
     //add random wincon
-    randWincon = Math.floor(Math.random * wincons.length)-1;
-    deck.push(wincons[randWincon]);
+    randWincon = wincons[Math.floor(Math.random() * wincons.length)];
+    //if (randWincon instanceof Card){
+        deck.push(randWincon);
+    //}
     //add random spell
-    randMinitank = Math.floor(Math.random * miniTanks.length)-1;
-    deck.push(miniTanks[randMinitank]);
-    //add either random or champion
-    randEither = Math.floor(Math.random * (randoms.length + champions.length))-1;
-    if (parseInt(randEither) > randoms.length){
-        randEither -= randoms.length
-        deck.push(champions[randEither]);
-    }
-    else{
-        deck.push(randoms[randEither]);
-    }
-    var cardNames = [];
-    for (let i = 0; i < deck.length; i++){
-        cardNames[i] = "images/" + deck[i].name + ".png";
-        var cardNumber = "card" + toString(i+1); //card1
-        document.getElementById(cardNumber).style.visibility = "visible";
-        document.getElementById(cardNumber).src = deck[i];
+    randMinitank = miniTanks[Math.floor(Math.random() * miniTanks.length)];
+    //if (randMinitank instanceof Card){
+        deck.push(randMinitank);
+    //}
+    //add random random
+    randomR = randoms[Math.floor(Math.random() * randoms.length)];
+    //if (randomR instanceof Card){
+        deck.push(randomR);
+    //}
+
+    randChamp = champions[Math.floor(Math.random() * champions.length)];
+    //if (randomChamp instanceof Card){
+        deck.push(randChamp);
+    //}
+    for (let i = 1; i < deck.length+1; i++){
+        let count = i;
+        console.log(count);//test
+        var cardd = deck[i];
+        console.log(cardd);//test
+        if (cardd instanceof Card){
+            let cardNumber = 'card' + (Math.floor(i)).toString(); //card1
+            console.log(cardNumber); //test
+            let cardImage = 'images/' + (cardd.name).toString() + '.png';
+            document.getElementById(cardNumber).src = cardImage;
+        }
     }
 
     return deck;
