@@ -192,7 +192,7 @@ function CreateDeck(){
         deck.pop();
     }
     //add random cycle card
-    randCycle = Math.floor(Math.random() * (cycles.length-1));
+    randCycle = Math.floor(Math.random() * (cycles.length));
     //if (cycles[randCycle] instanceof Card){
         deck.push(cycles[randCycle]);
     //}
@@ -216,21 +216,34 @@ function CreateDeck(){
     //if (randWincon instanceof Card){
         deck.push(randWincon);
     //}
+    randWincon = wincons[Math.floor(Math.random() * wincons.length)];
+    //if (randWincon instanceof Card){
+        deck.push(randWincon);
+    //}
     //add random spell
     randMinitank = miniTanks[Math.floor(Math.random() * miniTanks.length)];
     //if (randMinitank instanceof Card){
         deck.push(randMinitank);
     //}
-    //add random random
-    randomR = randoms[Math.floor(Math.random() * randoms.length)];
+    //add random random or champion
+    randomR = Math.floor(Math.random() * (randoms.length + champions.length));
+    if (randomR >= randoms.length){
+        randomR-=(randoms.length);
+        let temp = randomR;
+        randomR = champions[temp];
+    }
+    else{
+        let temp = randomR;
+        randomR = randoms[temp];
+    }
     //if (randomR instanceof Card){
         deck.push(randomR);
     //}
 
-    randChamp = champions[Math.floor(Math.random() * champions.length)];
-    //if (randomChamp instanceof Card){
-        deck.push(randChamp);
-    //}
+    // randChamp = champions[Math.floor(Math.random() * champions.length)];
+    // //if (randomChamp instanceof Card){
+    //     deck.push(randChamp);
+    // //}
     for (let i = 0; i < deck.length; i++){
         console.log(i+1);
         var cardd = deck[i];
