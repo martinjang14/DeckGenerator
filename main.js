@@ -202,7 +202,7 @@ function CreateDeck(){
 
     //add second spell
     randSpell2 = Math.floor(Math.random() * spells.length);
-    if (randSpell2 == randSpell){
+    while (randSpell2 == randSpell){
         randSpell2 = Math.floor(Math.random() * spells.length);
     }
     deck.push(spells[randSpell2]);
