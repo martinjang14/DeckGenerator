@@ -187,7 +187,6 @@ document.querySelector("button").onclick = function() {
 
 
 function CreateDeck(){
-    console.log("does this work");
     //first clear any previous deck
     while(deck.length > 0){
         deck.pop();
@@ -232,14 +231,12 @@ function CreateDeck(){
     //if (randomChamp instanceof Card){
         deck.push(randChamp);
     //}
-    for (let i = 1; i < deck.length+1; i++){
-        let count = i;
-        console.log(count);//test
+    for (let i = 0; i < deck.length; i++){
+        console.log(i);
         var cardd = deck[i];
         console.log(cardd);//test
         if (cardd instanceof Card){
-            let cardNumber = 'card' + (Math.floor(i)).toString(); //card1
-            console.log(cardNumber); //test
+            let cardNumber = 'card' + (Math.floor(i+1)).toString(); //card1
             let cardImage = 'images/' + (cardd.name).toString() + '.png';
             document.getElementById(cardNumber).src = cardImage;
         }
