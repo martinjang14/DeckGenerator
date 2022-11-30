@@ -10,6 +10,7 @@ body{
 }
 
 #deckGenerator{
+
     font-size: medium;
     font-weight: 200;
 }
@@ -18,4 +19,15 @@ body{
     visibility:visible;
     height: 10%;
     width: 10%;
+}
+
+#elixir{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 1cm;
+}
+
+#cardAllign{
+    text-align: center;
 }

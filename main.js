@@ -179,6 +179,7 @@ var randSpell;
 var randSupport;
 var randWincon;
 var randSpell2;
+var avgElixir;
 // let createDeckButton = document.getElementById('deckGenerator');
 // createDeckButton.addEventListener('click', CreateDeck());
 document.querySelector("button").onclick = function() {
@@ -188,16 +189,19 @@ document.querySelector("button").onclick = function() {
 
 
 function CreateDeck(){
+    let totalElixir = 0;
     //first clear any previous deck
     while(deck.length > 0){
         deck.pop();
     }
     //add random cycle card
     randCycle = Math.floor(Math.random() * (cycles.length));
+    totalElixir+=(cycles[randCycle]).elixir;
     deck.push(cycles[randCycle]);
 
     //add random spell
     randSpell = Math.floor(Math.random() * spells.length);
+    totalElixir+=(spells[randSpell]).elixir;
     deck.push(spells[randSpell]);
 
     //add second spell
@@ -205,18 +209,22 @@ function CreateDeck(){
     while (randSpell2 == randSpell){
         randSpell2 = Math.floor(Math.random() * spells.length);
     }
+    totalElixir+=(spells[randSpell2]).elixir;
     deck.push(spells[randSpell2]);
 
     //add random building
     randBuilding = Math.floor(Math.random() * buildings.length);
+    totalElixir+=(buildings[randBuilding]).elixir;
     deck.push(buildings[randBuilding]);
 
     //add random support
     randSupport = Math.floor(Math.random() * supports.length);
+    totalElixir+=(supports[randSupport]).elixir;
     deck.push(supports[randSupport]);
 
     //add random wincon
     randWincon = Math.floor(Math.random() * wincons.length);
+    totalElixir+=(wincons[randWincon]).elixir;
     deck.push(wincons[randWincon]);
 
     //add second wincon
@@ -228,6 +236,7 @@ function CreateDeck(){
 
     //add random minitank
     randMinitank = Math.floor(Math.random() * miniTanks.length);
+    totalElixir+=(miniTanks[randMinitank]).elixir;
     deck.push(miniTanks[randMinitank]);
 
     //add random random or champion
@@ -236,14 +245,16 @@ function CreateDeck(){
         randomR-=(randoms.length);
         let temp = randomR;
         randomR = champions[temp];
+        totalElixir+=(champions[temp]).elixir;
     }
     else{
         let temp = randomR;
         randomR = randoms[temp];
+        totalElixir+=(randoms[temp]).elixir;
     }
-
     deck.push(randomR);
 
+    avgElixir = Math.round(totalElixir/8 * 10)/10;
     for (let i = 0; i < deck.length; i++){
         console.log(i+1);
         var cardd = deck[i];
@@ -254,6 +265,7 @@ function CreateDeck(){
             document.getElementById(cardNumber).src = cardImage;
         }
     }
+    document.getElementById("elixir").innerHTML = "Average Elixir: " + avgElixir;
 
     return deck;
 }
