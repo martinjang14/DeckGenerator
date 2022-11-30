@@ -60,7 +60,7 @@ allCards.push(electroWizard = new Card("electroWizard", 4, "support", "legendary
 allCards.push(nightWitch = new Card("nightWitch", 4, "support", "legendary"));
 allCards.push(magicArcher = new Card("magicArcher", 4, "support", "legendary"));
 allCards.push(motherWitch = new Card("motherWitch", 4, "support", "legendary"));
-allCards.push(pheonix = new Card("pheonix", 4, "support", "legendary"));
+allCards.push(pheonix = new Card("phoenix", 4, "support", "legendary"));
 allCards.push(musketeer = new Card("musketeer", 4, "support", "rare"));
 allCards.push(zappies = new Card("zappies", 4, "support", "rare"));
 allCards.push(flyingMachine = new Card("flyingMachine", 4, "support", "rare"));
@@ -232,7 +232,7 @@ function CreateDeck(){
         deck.push(randChamp);
     //}
     for (let i = 0; i < deck.length; i++){
-        console.log(i);
+        console.log(i+1);
         var cardd = deck[i];
         console.log(cardd);//test
         if (cardd instanceof Card){
