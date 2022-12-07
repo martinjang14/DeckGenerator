@@ -38,7 +38,7 @@ allCards.push(barbarianBarrel = new Card("barbarianBarrel", 2, "spell", "epic"))
 allCards.push(rage = new Card("rage", 2, "spell", "epic"));
 allCards.push(mirror = new Card("mirror", 1, "spell", "epic"));
 
-allCards.push(xbow = new Card("xbow", 6, "building", "epic"));
+allCards.push(xbow = new Card("xbow", 6, "wincon", "epic"));
 allCards.push(barbarianHut = new Card("barbarianHut", 7, "building", "rare"));
 allCards.push(elixirCollector = new Card("elixirCollector", 6, "building", "rare"));
 allCards.push(goblinHut = new Card("goblinHut", 5, "building", "rare"));
@@ -186,6 +186,24 @@ document.querySelector("button").onclick = function() {
     CreateDeck();
 }
 
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = 
+      [array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+}
+
 
 
 function CreateDeck(){
@@ -253,7 +271,7 @@ function CreateDeck(){
         totalElixir+=(randoms[temp]).elixir;
     }
     deck.push(randomR);
-
+    shuffle(deck);
     avgElixir = Math.round(totalElixir/8 * 10)/10;
     for (let i = 0; i < deck.length; i++){
         console.log(i+1);
